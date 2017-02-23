@@ -1,0 +1,3 @@
+package: github.com/myhelix/kafka-test/kafka-go
+import:
+  - package: github.com/Shopify/sarama
