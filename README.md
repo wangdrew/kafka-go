@@ -5,5 +5,5 @@ kafka-go
 ```
 # glide up
 # go build
-# ./kafka-go
+# ./kafka-go -mode <publish|consume>
 ```
