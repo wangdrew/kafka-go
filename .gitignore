@@ -1,0 +1,4 @@
+.idea
+kafka-go
+kafka-go.iml
+vendor
