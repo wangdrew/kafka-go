@@ -41,13 +41,15 @@ func consume() {
 			fmt.Printf("Failed to start consumer for partition %d: %s\n", partition, err)
 		}
 
-		// Close the consumer if channel is closed
+		// Trigger closing all message channels via AsyncClose if closing signal received
 		go func(pc sarama.PartitionConsumer) {
 			<-closing
 			pc.AsyncClose()
 		}(pc)
 
 		wg.Add(1)
+
+		// Keep consuming from consumer's messages channel until it closes.
 		go func(pc sarama.PartitionConsumer) {
 			defer wg.Done()
 			for message := range pc.Messages() {
@@ -56,6 +58,7 @@ func consume() {
 		}(pc)
 	}
 
+	// Prints messages received from all of the partitionConsumer go-routines
 	go func() {
 		for msg := range messages {
 			fmt.Printf("Partition:\t%d\n", msg.Partition)
@@ -67,7 +70,6 @@ func consume() {
 	}()
 
 	wg.Wait()
-	fmt.Printf("Done consuming topic %s\n", topic)
 	close(messages)
 
 	if err := c.Close(); err != nil {

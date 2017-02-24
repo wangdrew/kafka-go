@@ -11,7 +11,7 @@ func publish() {
 	config := sarama.NewConfig()
 	config.Producer.RequiredAcks = sarama.WaitForAll
 	config.Producer.Return.Successes = true
-	config.Producer.Partitioner = sarama.NewHashPartitioner
+	config.Producer.Partitioner = sarama.NewHashPartitioner  // choose a partition at random
 
 	stdinReader := bufio.NewReader(os.Stdin)
 

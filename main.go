@@ -12,13 +12,13 @@ var (
 )
 
 var (
-	kafkaBroker1             = "192.168.99.100:32768"
-	kafkaBroker2             = "192.168.99.100:32769"
-	kafkaBroker3             = "192.168.99.100:32770"
+	kafkaBroker1             = "192.168.99.100:32783"
+	kafkaBroker2             = "192.168.99.100:32784"
+	kafkaBroker3             = "192.168.99.100:32785"
 	brokerList               = []string{kafkaBroker1, kafkaBroker2, kafkaBroker3}
-	topic                    = "testTopic"
+	topic                    = "helix"
 	partition                = -1
-	consumeOffset            = sarama.OffsetOldest
+	consumeOffset            = sarama.OffsetNewest
 	consumeChannelBufferSize = 256
 )
 
